@@ -12,9 +12,9 @@
     <br />
     <a href="">View Demo</a>
     ·
-    <a href="https://github.com/KarthikS373/tea">Report Bug</a>
+    <a href="https://github.com/KarthikS373/tea/issues">Report Bug</a>
     ·
-    <a href="https://github.com/KarthikS373/tea">Request Feature</a>
+    <a href="https://github.com/KarthikS373/tea/issues">Request Feature</a>
   </p>
 </div>
 
