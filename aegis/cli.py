@@ -15,6 +15,10 @@ class Effects:
             time.sleep(delay)
         print()
 
+    def skip_line(self, number_of_lines=1):
+        for i in range(number_of_lines):
+            print()
+
     def welcome_animation(self):
         self.typewriter_effect("Initializing Aegis CLI.....")
         time.sleep(1)
@@ -22,11 +26,11 @@ class Effects:
         time.sleep(1)
         self.typewriter_effect("Type 'help' to see available commands")
         time.sleep(1)
-        
+
         print()
         print()
         print()
 
     def write(self, text):
         self.typewriter_effect(text)
-        sleep(0.5)
+        time.sleep(0.5)
