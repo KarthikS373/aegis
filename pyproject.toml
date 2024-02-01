@@ -9,6 +9,7 @@ packages = [
     { include = "cli.py", from = "aegis" },
     { include = "config.py", from = "aegis" },
     { include = "controller.py", from = "aegis" },
+    { include = "helpers.py", from = "aegis" },
     { include = "model.py", from = "aegis" },
 ]
 
