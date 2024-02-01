@@ -73,10 +73,10 @@ Our mission is to empower developers of all skill levels with advanced security 
 
 
 <h2 id="builtwith"> Built with </h2>
+ 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)  ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 
-- Programming Languages: Python
-- Machine Learning Tools: PyTorch
-- Other Technologies: Git
+For details on the model's training process, refer to this [documentation](docs/training/training.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
