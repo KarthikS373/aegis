@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 <!-- PROJECT LOGO -->
 <br />
-<h1 align="center">Aegis: Protecting Smart Contracts with AI</h1>
+<h1 align="center">Aegis: Shielding Smart Contracts with AI-Driven Security</h1>
 <div align="center">
   <a href="https://github.com/KarthikS373/tea">
     <img src="assets/AegisLogo.png">
@@ -92,7 +92,18 @@ Our mission is to empower developers of all skill levels with advanced security 
 <h2 id="clicommands"> CLI Commands </h2>
 
 Aegis offers a set of intuitive CLI commands for efficient interaction. Refer to the [documentation](docs/examples.md) for usage examples.
-
+```
+info : get information about the application
+```
+```
+scan : scan a file or directory for vulnerabilities
+```
+```
+compile : compile the solidity code
+```
+```
+help : get help on a command
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
