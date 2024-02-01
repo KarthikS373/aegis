@@ -9,6 +9,9 @@ readme = "README.md"
 python = "^3.11"
 clidantic = "^0.1.0"
 pydantic = "1.10.14"
+py-solc-x = "^2.0.2"
+solc = "^0.0.0a0"
+colorama = "^0.4.6"
 
 [build-system]
 requires = ["poetry-core"]
