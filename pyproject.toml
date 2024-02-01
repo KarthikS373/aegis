@@ -9,15 +9,24 @@ packages = [
     { include = "cli.py", from = "aegis" },
     { include = "config.py", from = "aegis" },
     { include = "controller.py", from = "aegis" },
+    { include = "model.py", from = "aegis" },
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
 clidantic = "^0.1.0"
+colorama = "^0.4.6"
+datasets = "^2.16.1"
+hexbytes = "^0.2.3"
+python = "^3.11"
 pydantic = "1.10.14"
 py-solc-x = "^2.0.2"
+numpy = "^1.26.3"
+pyevmasm = "^0.2.3"
+scikit-learn = "^1.4.0"
+slither = "^0.3.0"
 solc = "^0.0.0a0"
-colorama = "^0.4.6"
+torch = "^2.2.0"
+torchvision = "^0.17.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -2,12 +2,14 @@ import solcx
 import sys
 
 from clidantic import Parser
+import numpy as np
 from solcx import compile_standard, compile_source
 from typing import Optional
 
 from args import CompileArguments, ScanArguments
 from cli import Effects
 from config import BANNER
+from model import predict, reverse_engineer_one_hot_encoding
 
 
 def check_solcx() -> bool:
@@ -236,6 +238,27 @@ class Controller:
                 raise Exception("Could not compile the contract")
 
             self.effects.write("Scanning...")
+
+            labels = {
+                0: 'access-control',
+                1: 'arithmetic',
+                2: 'other',
+                3: 'reentrancy',
+                4: 'safe',
+                5: 'unchecked-calls'
+            }
+
+            bytecode = compiled_contract["bytecode"]
+
+            prediction = predict(bytecode)
+            all_preds_np = np.array(prediction)
+            original_labels = reverse_engineer_one_hot_encoding(all_preds_np)
+            # print("Original Labels:", original_labels)
+            mapped_labels = [[labels[label] for label in sublist]
+                             for sublist in original_labels]
+            # print("Mapped Labels:")
+            for sublist in mapped_labels:
+                print(sublist)
 
         except Exception as e:
             print("Error scanning!!! Please try again...")
