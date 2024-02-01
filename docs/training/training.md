@@ -82,8 +82,8 @@ Non-trainable params: 6,455,872
 
 <h2 id="workflow"> Solution Workflow </h2>
 <div align="center">
-  <a href="assets/SolutionArchitecture.png">
-    <img src="assets/SolutionArchitecture.png">
+  <a href="../../assets/SolutionArchitecture.png">
+    <img src="../../assets/SolutionArchitecture.png">
   </a>
 </div>
 
@@ -106,6 +106,7 @@ The fine-tuned ResNet-18 model achieved the following results:
 | Micro Recall | 0.9545 | 0.7264 |
 
 These results demonstrate the potential of using Deep Learning for smart contract vulnerability detection.
+<br>
 Notebook Link : [Aegis Model Training](docs/training/AegisModelTraining.ipynb)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
