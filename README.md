@@ -1,44 +1,112 @@
-## Aegis: Protecting Smart Contracts with AI
+<a name="readme-top"></a>
+<!-- PROJECT LOGO -->
+<br />
+<h1 align="center">Aegis: Protecting Smart Contracts with AI</h1>
+<div align="center">
+  <a href="https://github.com/KarthikS373/tea">
+    <img src="assets/AegisLogo.png">
+  </a>
+  <p>
+    Aegis is a smart contract audit and analysis tool powered by artificial intelligence, dedicated to safeguarding your Solidity code from vulnerabilities.
+  <br />
+    <br />
+    <a href="">View Demo</a>
+    ·
+    <a href="https://github.com/KarthikS373/tea">Report Bug</a>
+    ·
+    <a href="https://github.com/KarthikS373/tea">Request Feature</a>
+  </p>
+</div>
 
-**Aegis** is a smart contract audit and analysis tool powered by artificial intelligence, dedicated to safeguarding your Solidity code from vulnerabilities. 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary><h2> Table of Contents </h2></summary>
+  <ol>
+    <li>
+      <a href="#abouttheproject"> About The Project </a>
+      <ul>
+        <li><a href="#mission"> Mission </a></li>
+        <li><a href="#valueproposition"> Value Proposition </a></li>
+      </ul>
+    </li>
+    <li><a href="#keyfeatures">Key Features</a></li>
+    <li><a href="#builtwith">Built With</a></li>
+    <li>
+      <a href="#gettingstarted">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation Instructions</a></li>
+        <li><a href="#example">Example Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#clicommands">CLI Commands</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#team">Team Members</a></li>
+  </ol>
+</details>
 
-**Why Aegis?**
+<h2 id="abouttheproject"> About the Project </h2>
 
-Traditional security approaches like manually defining patterns are time-consuming, require deep expertise, and struggle to keep up with ever-evolving threats. Aegis leverages the power of machine learning to offer a faster, more comprehensive solution:
+Aegis is a cutting-edge smart contract audit and analysis tool, empowered by state-of-the-art artificial intelligence, that safeguards your Solidity code against a wide range of vulnerabilities. Traditional security approaches like manually defining patterns are time-consuming, require deep expertise, and struggle to keep up with ever-evolving threats. Aegis leverages the power of deep learning to offer a faster, more comprehensive solution.
 
-* **AI-powered Analysis:** Our ResNet model, trained on a massive dataset of real-world smart contracts, can identify vulnerabilities with **65% accuracy**, highlighting potential risks before deployment.
-* **Fast and Efficient:** Compared to symbolic execution tools, Aegis provides rapid analysis, saving you valuable development time.
-* **No Expert Dependency:** Unlike rule-based methods reliant on predefined patterns, Aegis doesn't require expert knowledge to use, making it accessible to all developers.
+<h3 id="mission"> Mission </h3>
 
-**Key Features:**
+Our mission is to empower developers of all skill levels with advanced security capabilities, simplifying the process of building robust and trustworthy smart contracts.
 
-* **Vulnerability Detection:** Identify a wide range of vulnerabilities, including reentrancy, integer overflow, and access control issues.
-* **Solidity Support:** Analyze and scan your Solidity code for potential threats.
-* **Clear Reporting:** Receive detailed reports highlighting vulnerabilities, their severity levels, and suggested fixes.
-* **Easy Integration:** Seamlessly integrate Aegis into your development workflow with a user-friendly CLI interface.
+<h3 id="valueproposition"> Value Proposition </h3>
 
-**Technical Details:**
+- **AI-powered Vulnerability Detection:** Our robust machine learning model, trained on extensive real-world data, accurately identifies critical vulnerabilities, exceeding the limitations of traditional rule-based approaches.
+- **Solidity Expertise:** Aegis seamlessly supports Solidity, the leading language for smart contract development, ensuring compatibility with your existing projects.
+- **Actionable Insights and Remediation:** Detailed reports pinpoint vulnerabilities, their severity levels, and offer concrete suggestions for remediation, guiding you towards secure and reliable smart contracts.
+- **Effortless Integration:** Aegis integrates seamlessly into your development workflow with a user-friendly command-line interface, minimizing disruption and maximizing efficiency.
 
-* **Model:** ResNet architecture trained on 80k records and validated against 11k records.
-* **Accuracy:** 65% on the validation set.
-* **CLI Options:** info, scan, compile, help
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-**Getting Started:**
 
-1. **Installation:** Follow the installation instructions available on []
-2. **Usage:** Use the intuitive CLI commands to scan your Solidity code for vulnerabilities.
-3. **Review Results:** Analyze the generated report to understand potential risks and implement suggested fixes.
+<h2 id="keyfeatures"> Key Features </h2>
 
-**Beyond the Basics:**
+- **Advanced Vulnerability Detection:** Identify a broad spectrum of vulnerabilities, including reentrancy, integer overflow, access control issues, and more.
+- **Comprehensive Solidity Support:** Analyze and scan your Solidity code for potential threats.
+- **Actionable Insights and Remediation:** Receive detailed reports highlighting vulnerabilities, their severity levels, and suggested fixes.
+- **Easy Integration:** Seamlessly integrate Aegis into your development workflow with a user-friendly CLI interface.
 
-We believe transparency is key. Our open-source approach allows you to delve into the workings of Aegis and customize it to your specific needs. You can access the source code and contribute to its development on our GitHub repository.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-**Join the Community:**
 
-Become part of our growing community of developers embracing AI-powered smart contract security. Share your experiences, contribute to the project, and stay informed about the latest advancements.
+<h2 id="builtwith"> Built with </h2>
 
-**Together, let's build a safer future for smart contracts!**
+- Programming Languages: Python
+- Machine Learning Tools: PyTorch
+- Other Technologies: Git
 
-**Documentation:**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-* Detailed user guide and tutorials available on []
+
+<h2 id="gettingstarted"> Getting Started </h2>
+
+<h3 id="installation"><a href="docs/setup.md"> Installation Instructions </a></h3>
+<h3 id="example"> <a href="docs/examples.md"> Example Usage </a></h3>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<h2 id="clicommands"> CLI Commands </h2>
+
+Aegis offers a set of intuitive CLI commands for efficient interaction. Refer to the [documentation](docs/examples.md) for usage examples.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<h2 id="license"> License </h2>
+
+Aegis is licensed under the [license type] license. For more information, please see the LICENSE file in the repository.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<h2 id="team"> Team Members </h2>
+
+- [Ananya Gupta](https://github.com/Ananya2003Gupta)
+- [Karthik S](https://github.com/KarthikS373)
+- [Samarth Sahu](https://github.com/Samcoding5854)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
