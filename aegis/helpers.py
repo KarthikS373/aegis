@@ -1,3 +1,4 @@
+import sys
 import solcx
 
 from solcx import compile_standard, compile_source
