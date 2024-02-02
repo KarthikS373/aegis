@@ -1,7 +1,9 @@
 import solcx
 
+from fpdf import FPDF
 from solcx import compile_standard, compile_source
 from typing import Optional
+
 
 from args import CompileArguments, ScanArguments
 from cli import Effects
@@ -127,3 +129,17 @@ class Helper:
         except Exception as e:
             print("Error reading the file")
             sys.exit(1)
+
+    def create_pdf(self, content: list[str]):
+        try:
+            pdf = FPDF('P', 'mm', 'A4')
+            pdf.add_page()
+            pdf.set_font("Arial", size=12)
+
+            for line in content:
+                pdf.cell(200, 10, txt=line, ln=True, align='L')
+
+            pdf.output("report.pdf")
+
+        except Exception as e:
+            print(e)

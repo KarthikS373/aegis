@@ -28,6 +28,7 @@ slither = "^0.3.0"
 solc = "^0.0.0a0"
 torch = "^2.2.0"
 torchvision = "^0.17.0"
+fpdf = "^1.7.2"
 
 [build-system]
 requires = ["poetry-core"]

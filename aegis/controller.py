@@ -73,6 +73,14 @@ class Controller:
                 "description": "Compile the solidity code",
                 "script": self.compile
             },
+
+            # Command: generate-report
+            # Description: Generate a detailed report for a smart contract with vulnerabilities, recommendations and possible fixes
+            {
+                "command": "generate-report",
+                "description": "Generate report for a smart contract with vulnerabilities and recommendations",
+                "script": self.generate_report
+            },
         ]
         for command in commands:
             self.cli.command(command["command"], command["description"])(
@@ -215,3 +223,8 @@ class Controller:
             print("Error scanning!!! Please try again...")
             print(e)
             return
+
+    def generate_report(self):
+        """ Generate a new smart contract """
+        # TODO: Generate a new report from llama
+        self.helper.create_pdf([])
