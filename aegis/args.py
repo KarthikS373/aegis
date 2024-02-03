@@ -23,23 +23,7 @@ class CompileArguments(BaseModel):
 
 class ScanArguments (CompileArguments):
     """Scan arguments for the scanner"""
-    pdf: Optional[bool] = Field(
-        names=("-P", "--pdf"),
-        description="Generate PDF report",
-        default=False
-    )
-
-    pdf_path: Optional[str] = Field(
-        names=("-pp", "--pdf-path"),
-        description="Path to the PDF report",
-        default="report.pdf"
-    )
-
-    html: Optional[bool] = Field(
-        names=("-H", "--html"),
-        description="Generate HTML report",
-        default=False
-    )
+    pass
 
 
 class GenerateReportArguments (BaseModel):
@@ -49,13 +33,7 @@ class GenerateReportArguments (BaseModel):
         description="Path to the contract file"
     )
 
-    pdf: Optional[bool] = Field(
-        names=("-P", "--pdf"),
-        description="Generate PDF report",
-        default=False
-    )
-
-    pdf_path: Optional[str] = Field(
+    output: Optional[str] = Field(
         names=("-pp", "--pdf-path"),
         description="Path to the PDF report",
         default="report.pdf"

@@ -188,12 +188,12 @@ class Controller:
                         '/') and args.output or f'{args.output}/'
 
                 self.helper.write_solidity_file(
-                    f'{path}/{contract_name}.abi',
+                    f'{path}{contract_name}.abi',
                     abi
                 )
 
                 self.helper.write_solidity_file(
-                    f'{path}/{contract_name}.bin',
+                    f'{path}{contract_name}.bin',
                     bytecode
                 )
 
@@ -214,6 +214,7 @@ class Controller:
         try:
             compiled_contract = self.helper.compile_solidity(
                 contract_file,
+                optimize=args.optimize
             )
 
             if not compiled_contract:
@@ -325,7 +326,11 @@ class Controller:
                     print(e)
                     pass
 
-            pdf.output('report.pdf', 'F')
+            path = './'
+            if args.output:
+                path = args.output.endswith(
+                    '/') and args.output or f'{args.output}/'
+            pdf.output(f'{path}{report.pdf}', 'F')
 
         except Exception as e:
             print("Error generating report")
