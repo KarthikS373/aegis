@@ -12,9 +12,9 @@
     <br />
     <a href="">View Demo</a>
     ·
-    <a href="https://github.com/KarthikS373/tea/issues">Report Bug</a>
+    <a href="https://github.com/KarthikS373/aegis/issues">Report Bug</a>
     ·
-    <a href="https://github.com/KarthikS373/tea/issues">Request Feature</a>
+    <a href="https://github.com/KarthikS373/aegis/issues">Request Feature</a>
   </p>
 </div>
 
@@ -93,23 +93,23 @@ For details on the model's training process, refer to this [documentation](docs/
 
 Aegis offers a set of intuitive CLI commands for efficient interaction. Refer to the [documentation](docs/examples.md) for usage examples.
 ```
+compile : compile the solidity code
+```
+```
 info : get information about the application
 ```
 ```
 scan : scan a file or directory for vulnerabilities
 ```
 ```
-compile : compile the solidity code
-```
-```
-help : get help on a command
+summary : get summary about the smart contract
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <h2 id="license"> License </h2>
 
-Aegis is licensed under the [license type] license. For more information, please see the LICENSE file in the repository.
+Aegis is licensed under the MIT license. For more information, please see the LICENSE file in the repository.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
