@@ -31,6 +31,7 @@
     </li>
     <li><a href="#keyfeatures">Key Features</a></li>
     <li><a href="#builtwith">Built With</a></li>
+    <li><a href="#detection">Built With</a></li>
     <li>
       <a href="#gettingstarted">Getting Started</a>
       <ul>
@@ -76,7 +77,30 @@ Our mission is to empower developers of all skill levels with advanced security 
  
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)  ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 
-For details on the model's training process, refer to this [documentation](docs/training/training.md).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<h2 id="detection"> Vulnerability Detection </h2>
+
+Aegis employs a two-stage approach to vulnerability detection, combining the strengths of ResNet-18 and LLAMA 2.
+
+### [ResNet-18](docs/training/ResNetModelTraining.md):
+
+- Acts as the first line of defense, efficiently extracting crucial features from smart contract bytecode.
+- Identifies the presence of vulnerabilities with a broad scope, providing an initial assessment.
+
+### [LLAMA 2](docs/training/FinetuningLlama.md):
+
+- Built upon ResNet-18's foundation, leverages fine-tuning and specialized training to pinpoint vulnerable code segments with enhanced precision.
+- Goes beyond mere detection, offering actionable guidance for resolving vulnerabilities through targeted suggestions and potential fixes.
+
+### Key Advantages:
+- **Precision Boost**: LLAMA 2's targeted approach minimizes false positives and pinpoints relevant areas for attention, saving developers valuable time and effort.
+- **Actionable Insights**: Gain practical, code-level recommendations for addressing vulnerabilities, empowering you to effectively secure your smart contracts.
+- **Open Datasets and Hallucination Mitigation**: We prioritize responsible AI practices by utilizing publicly available datasets, actively addressing the potential for hallucination in LLAMA 2, and ensuring the accurate identification and remediation of vulnerabilities.
+
+### Detailed Information:
+For a deeper understanding of the fine-tuning process, dataset selection, and mitigation strategies, please refer to the comprehensive [documentation](docs/training) provided.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
