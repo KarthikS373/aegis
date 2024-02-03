@@ -24,10 +24,9 @@ Smart contracts written in Solidity are susceptible to vulnerabilities that can 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <h2 id="dataset"> Dataset </h2>
 
-The dataset used in this project is [mwritescode/slither-audited-smart-contracts](https://huggingface.co/datasets/mwritescode/slither-audited-smart-contracts), which contains over 100k smart contracts which were labeled using the Slither static analyzer. 
+The dataset used in this project is [mwritescode/slither-audited-smart-contracts](https://huggingface.co/datasets/mwritescode/slither-audited-smart-contracts), which contains over 100k smart contracts which were labeled using the Slither static analyzer.
 <br>
 <br>
 Slither static analyzer passes the code though a number of rule-based detectors and returns a JSON file containing details about where those detectors found a vulnerability. The 38 detectors that found a match in the dataset were then mapped to the following 5 classes that were:
@@ -40,7 +39,6 @@ Slither static analyzer passes the code though a number of rule-based detectors 
 - 5: unchecked-calls :- Solidity offers some low-level functions like call(), callcode(), delegatedcall() and send() which do not propagate errors. These functions simply return false, but the code will continue to run; thus developers should always check the return value of such low-level calls.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <h2 id="model"> Model </h2>
 
@@ -79,7 +77,6 @@ Non-trainable params: 6,455,872
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <h2 id="workflow"> Solution Workflow </h2>
 <div align="center">
   <a href="../../assets/SolutionArchitecture.png">
@@ -89,21 +86,20 @@ Non-trainable params: 6,455,872
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <h2 id="results"> Training Results </h2>
 
 The fine-tuned ResNet-18 model achieved the following results:
 
-| Metric | Train | Validation |
-|---|---|---|
-| Loss | 0.0611 | 0.4833 |
-| Accuracy | 0.9022 | 0.6500 |
-| Macro F1-score | 0.9537 | 0.7313 |
-| Macro Precision | 0.9595 | 0.7753 |
-| Macro Recall | 0.9481 | 0.6934 |
-| Micro F1-score | 0.9583 | 0.7622 |
-| Micro Precision | 0.9621 | 0.8017 |
-| Micro Recall | 0.9545 | 0.7264 |
+| Metric          | Train  | Validation |
+| --------------- | ------ | ---------- |
+| Loss            | 0.0611 | 0.4833     |
+| Accuracy        | 0.9022 | 0.6500     |
+| Macro F1-score  | 0.9537 | 0.7313     |
+| Macro Precision | 0.9595 | 0.7753     |
+| Macro Recall    | 0.9481 | 0.6934     |
+| Micro F1-score  | 0.9583 | 0.7622     |
+| Micro Precision | 0.9621 | 0.8017     |
+| Micro Recall    | 0.9545 | 0.7264     |
 
 These results demonstrate the potential of using Deep Learning for smart contract vulnerability detection.
 <br>
@@ -111,12 +107,10 @@ Notebook Link : [Aegis Model Training](docs/training/AegisModelTraining.ipynb)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <h2 id="futurework"> Future Work </h2>
 Further research is needed to improve the accuracy and generalizability of the model. This could involve exploring different Deep Learning architectures, data augmentation techniques, and incorporating information beyond the bytecode itself.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <h2 id="references"> References </h2>
 [1] Huang, T. H.-D. (2018). Hunting the Ethereum Smart Contract: Color-inspired Inspection of Potential Attacks. ArXiv:1807.01868 [Cs]. http://arxiv.org/abs/1807.01868
