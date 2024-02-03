@@ -59,7 +59,6 @@ class Controller:
                 "description": "Get information about the application",
                 "script": self.info
             },
-
             # Command: scan
             # Description: Scan a file or directory for vulnerabilities
             {
@@ -152,9 +151,6 @@ class Controller:
         for word in llm(prompt, stream=True):
             print(word, end='')
 
-        # word = llm(prompt)
-        # print(word)
-
         print("\n")
 
         return
@@ -173,11 +169,33 @@ class Controller:
         try:
             compiled_contract = self.helper.compile_solidity(
                 contract_file,
+                optimize=args.optimize
             )
 
             if not compiled_contract:
                 print("No compiled contract found")
                 raise Exception("Could not compile the solidity code")
+
+            for entity in compiled_contract:
+                contract_name = entity["name"]
+                abi = entity["abi"]
+                bytecode = entity["bytecode"]
+
+                print(f"Contract name: {contract_name}")
+                path = f'compiled'
+                if args.output:
+                    path = args.output.endswith(
+                        '/') and args.output or f'{args.output}/'
+
+                self.helper.write_solidity_file(
+                    f'{path}/{contract_name}.abi',
+                    abi
+                )
+
+                self.helper.write_solidity_file(
+                    f'{path}/{contract_name}.bin',
+                    bytecode
+                )
 
         except Exception as e:
             print("Error compiling the solidity code")

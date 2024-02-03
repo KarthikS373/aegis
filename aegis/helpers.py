@@ -1,3 +1,5 @@
+import json
+import os
 import sys
 import solcx
 
@@ -107,7 +109,7 @@ class Helper:
         except:
             return None
 
-    def compile_solidity(self, contract):
+    def compile_solidity(self, contract, optimize: bool = False):
         latest_solcx_version = self.get_latest_installed_solcx_version()
 
         if not latest_solcx_version:
@@ -154,4 +156,26 @@ class Helper:
 
         except Exception as e:
             print("Error reading the file")
+            sys.exit(1)
+
+    def write_solidity_file(self, path: str, content: str):
+        try:
+            # Create the directory if it doesn't exist
+            directory = os.path.dirname(path)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+
+            # Modify the path and content
+            path = path.replace('<stdin>:', '')
+
+            if not isinstance(content, str):
+                content = json.dumps(content)
+
+            # Write to the file
+            with open(path, "w") as f:
+                f.write(content)
+
+        except Exception as e:
+            print("Error writing the file")
+            print(e)
             sys.exit(1)
