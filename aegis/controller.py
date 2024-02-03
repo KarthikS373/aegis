@@ -2,11 +2,12 @@ import solcx
 import sys
 
 from clidantic import Parser
+from fpdf import FPDF
 import numpy as np
 from solcx import compile_standard, compile_source
 from typing import Optional
 
-from args import CompileArguments, ScanArguments
+from args import CompileArguments, ScanArguments, GenerateReportArguments
 from cli import Effects
 from config import BANNER
 from helpers import Helper
@@ -79,6 +80,13 @@ class Controller:
                 "command": "compile",
                 "description": "Compile the solidity code",
                 "script": self.compile
+            },
+            # Command: generate-report
+            # Description: Generate a report for the scanned vulnerabilities
+            {
+                "command": "report",
+                "description": "",
+                "script": self.generate_report
             },
         ]
         for command in commands:
@@ -262,5 +270,46 @@ class Controller:
             print(e)
             return
 
-    def generate_report(self):
-        pass
+    def generate_report(self, args: GenerateReportArguments):
+        is_solidity = self.helper.check_solidity_file(args.path)
+        if not is_solidity:
+            print("Please provide a solidity file")
+            return
+
+        pdf = FPDF()
+        pdf.add_page()
+
+        contract_file = self.helper.read_solidity_file(args.path)
+
+        try:
+            for iter in self.helper.generate_report_prompts:
+                prompt = iter['instructions']
+                title = iter['title']
+
+                self.effects.write(f"Generating {title}...")
+                try:
+                    response = llm(f"{prompt} code: {contract_file}")
+                    if response:
+                        # Title
+                        pdf.set_font('Arial', 'B', 16)
+                        pdf.set_fill_color(200, 220, 255)
+                        pdf.cell(0, 6, title, 'L', 1)
+
+                        # line break
+                        pdf.ln(4)
+
+                        # Content
+                        pdf.set_font('Arial', '', 12)
+                        pdf.multi_cell(186, 6, response)
+
+                except Exception as e:
+                    print("Error generating {}".format(title))
+                    print(e)
+                    pass
+
+            pdf.output('report.pdf', 'F')
+
+        except Exception as e:
+            print("Error generating report")
+            print(e)
+            return

@@ -45,6 +45,33 @@ class Helper:
             }
         }
 
+        self.generate_report_prompts = [
+            {
+                "title": "Summary",
+                "description": "",
+                "prompt": "Generate a detailed summary of the given solidity contract.",
+                "instructions": "Please provide a concise summary outlining the purpose, functionality, and key components of the Solidity contract. Organize the summary into sections covering its main features, such as contract structure, functions, variables, and any notable dependencies."
+            },
+            {
+                "title": "Vulnerabilities",
+                "description": "",
+                "prompt": "Identify and describe any vulnerabilities present in the Solidity contract.",
+                "instructions": "Please list and describe any vulnerabilities detected within the Solidity contract's code. Highlight potential security risks, including but not limited to reentrancy issues, integer overflow/underflow, and unauthenticated function calls. Include recommendations for mitigating each vulnerability."
+            },
+            {
+                "title": "Optimizations",
+                "description": "",
+                "prompt": "Suggest optimizations to enhance the performance and gas efficiency of the Solidity contract.",
+                "instructions": "Propose specific optimizations aimed at improving the performance and gas efficiency of the Solidity contract. This may involve refactoring code to reduce gas costs, optimizing data structures and algorithms, and leveraging compiler optimizations. Provide clear instructions on implementing each optimization, ensuring compatibility with the contract's functionality."
+            },
+            {
+                "title": "Additional",
+                "description": "",
+                "prompt": "Generate additional insights or analysis relevant to the Solidity contract.",
+                "instructions": "Provide supplementary insights, analysis, or commentary pertinent to the Solidity contract. This may include comparisons with similar contracts, discussion of design decisions, or considerations for future enhancements. Tailor the content to address any specific concerns or interests relevant to the contract's stakeholders, ensuring clarity and relevance."
+            }
+        ]
+
     def check_solcx(self) -> bool:
         """ Check if solc is installed """
         installed_versions = solcx.get_installed_solc_versions()

@@ -34,3 +34,10 @@ class Effects:
     def write(self, text):
         self.typewriter_effect(text)
         time.sleep(0.5)
+
+    def loading_animation(self):
+        while True:
+            for char in '|/-\\':
+                sys.stdout.write('\r' + 'Generating' + char)
+                time.sleep(0.1)
+                sys.stdout.flush()
