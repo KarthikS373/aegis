@@ -12,7 +12,7 @@ from model import predict, reverse_engineer_one_hot_encoding
 
 class Helper:
     def __init__(self):
-        error_descriptions = {
+        self.error_descriptions = {
             'access-control': {
                 'desc': "Access control vulnerabilities occur when smart contracts do not properly control access to sensitive functions or data.",
                 'methods': "To mitigate access control vulnerabilities, ensure that sensitive functions or data can only be accessed by authorized users or contracts. Implement proper permission checks and access control mechanisms.",

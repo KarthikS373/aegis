@@ -1,6 +1,6 @@
 import solcx
 import sys
-from ctransformers import AutoModelForCausalLM
+
 from clidantic import Parser
 import numpy as np
 from solcx import compile_standard, compile_source
@@ -10,9 +10,9 @@ from args import CompileArguments, ScanArguments
 from cli import Effects
 from config import BANNER
 from helpers import Helper
+from llm import llm
 from model import predict, reverse_engineer_one_hot_encoding
 
-llm = AutoModelForCausalLM.from_pretrained('TheBloke/Llama-2-7B-Chat-GGML', model_file = 'llama-2-7b-chat.ggmlv3.q4_K_S.bin' )
 
 class Controller:
     def __init__(self):
@@ -130,15 +130,27 @@ class Controller:
         contract_file = self.helper.read_solidity_file(args.path)
 
         prompt = """
-        Can you summarize this contract_file?:
-        {}
+            Analyze this "Solidity smart contract" code
+            Provide a structured summary that includes: 
+                (1) the contract's purpose and functionality; 
+                (2) key components with their roles; 
+                (3) mechanisms of user interaction and transaction flow;
+                (4) notable security features or patterns employed;
+            Aim for a concise, detailed, explanation to understand the contract's operation and use cases, remove any vague or ambiguous machine generated text.
+            
+            Contract: {}
         """.format(contract_file)
-        # print (prompt)
-        for word in llm(prompt, stream = True):
+
+        for word in llm(prompt, stream=True):
             print(word, end='')
-        print("/n")
+
+        # word = llm(prompt)
+        # print(word)
+
+        print("\n")
+
         return
-    
+
     def compile(self, args: CompileArguments):
         """ Compile the solidity code """
         is_solidity = self.helper.check_solidity_file(args.path)
@@ -207,7 +219,7 @@ class Controller:
 
                 mapped_labels = [[labels[label] for label in sublist]
                                  for sublist in original_labels]
-                
+
                 for sublist in mapped_labels:
                     def print_detailed_report(sublist):
                         self.effects.write("Scan complete...")
@@ -229,19 +241,18 @@ class Controller:
                             )
                             self.effects.skip_line(1)
 
-
                     def print_scan_result(sublist):
                         if 'safe' in sublist:
                             print("Smart contract scan complete - code looks safe")
                         else:
                             print_detailed_report(sublist)
-                            ### LLM Code for putting vulnerabilties:
+                            # LLM Code for putting vulnerabilties:
                             prompt = """
                                     Can you say why and where is {} vulnerability in this code?:
                                     {}
                                     """.format(sublist[0], contract_file)
 
-                            for word in llm(prompt, stream = True):
+                            for word in llm(prompt, stream=True):
                                 print(word, end='')
 
                     print_scan_result(sublist)
@@ -250,3 +261,6 @@ class Controller:
             print("Error scanning!!! Please try again...")
             print(e)
             return
+
+    def generate_report(self):
+        pass
