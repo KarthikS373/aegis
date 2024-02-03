@@ -14,6 +14,11 @@ class CompileArguments(BaseModel):
         description="Output directory"
     )
 
+    prompt: Optional[str] = Field(
+        names=("-pt", "--prompt"),
+        description="Prompt for generating code"
+    )
+
     optimize: Optional[bool] = Field(
         names=("-O", "--optimize"),
         description="Enable optimization",

@@ -6,11 +6,12 @@ from fpdf import FPDF
 import numpy as np
 from solcx import compile_standard, compile_source
 from typing import Optional
-
+import os
 from args import CompileArguments, ScanArguments, GenerateReportArguments
 from cli import Effects
 from config import BANNER
 from helpers import Helper
+from genModel import tokenizer, modelGen
 from llm import llm
 from model import predict, reverse_engineer_one_hot_encoding
 
@@ -84,8 +85,13 @@ class Controller:
             # Description: Generate a report for the scanned vulnerabilities
             {
                 "command": "report",
-                "description": "",
+                "description": "Generate a report for the scanned vulnerabilities",
                 "script": self.generate_report
+            },
+            {
+                "command": "generate",
+                "description": "Generate a solidity smart contract on your given prompt",
+                "script": self.generate
             },
         ]
         for command in commands:
@@ -126,6 +132,41 @@ class Controller:
         # TODO: Echidna
 
         self.effects.skip_line(2)
+
+
+    def generate(self, args: CompileArguments):
+
+        solidity_file_path = args.path #takes in the path where it should write the contract
+        input=args.prompt
+
+        promptIns = f"""### Instruction:
+                Use the Task below and the Input given to write the Response, which is a programming code that can solve the following Task:
+
+                ### Task:
+                {input}
+
+                ### Solution:
+                """
+        
+        input_ids = tokenizer(promptIns, return_tensors="pt", truncation=True).input_ids.cuda()
+        # Run the model to infere an output
+        outputs = modelGen.generate(input_ids=input_ids, max_new_tokens=1024, do_sample=True, top_p=0.9, temperature=0.001, pad_token_id=1)
+
+        genCode = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0][len(promptIns):]
+        print(genCode)
+
+        is_solidity = os.path.exists(solidity_file_path) and solidity_file_path.endswith(".sol")
+        
+        if is_solidity:
+            return  # Solidity file already exists, no need to create a new one
+        
+        # Solidity file doesn't exist, create a new one
+        with open(solidity_file_path, "w") as solidity_file:
+            # Write initial content to the Solidity file
+            solidity_file.write(genCode)
+            # Optionally, you can add more content or leave the file empty
+            
+        return
 
     def summary(self, args: ScanArguments):
 
