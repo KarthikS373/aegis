@@ -33,7 +33,7 @@ Before getting started, ensure you have the following prerequisites installed:
 1. **Clone the Repository**: First, clone the `Aegis` repository to your local machine using Git:
 
    ```bash
-   git clone https://github.com/karthiks373/aegis aegis
+   git clone https://github.com/KarthikS373/aegis.git
    ```
 
 2. **Change Directory**: Navigate to the `aegis` directory:
@@ -82,9 +82,5 @@ When working on `Aegis`, you can use the following commands to manage the develo
 ## Next Steps
 
 - **Read the Documentation**: To learn more about `Aegis`, refer to the [official documentation](../docs)
-- **Examples**: Explore the [examples](../examples) to see how `Aegis` can be used in different scenarios
+- **Examples**: Explore the [examples](examples) to see how `Aegis` can be used in different scenarios
 - **Get Help**: If you have any questions or need help, feel free to open an issue on the [GitHub repository](https://github.com/karthiks373/aegis/issues)
-
-```
-
-```
