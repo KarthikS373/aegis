@@ -82,7 +82,7 @@ Our mission is to empower developers of all skill levels with advanced security 
 
 - [ResNet18](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet18.html)
 - [TheBloke/Llama-2-7B-Chat-GGML](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML)
-- [AlfredPros/CodeLlama-7b-Instruct-Solidity](https://huggingface.co/AlfredPros/CodeLlama-7b-Instruct-Solidity)
+<!--  [AlfredPros/CodeLlama-7b-Instruct-Solidity](https://huggingface.co/AlfredPros/CodeLlama-7b-Instruct-Solidity) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
