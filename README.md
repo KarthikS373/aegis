@@ -19,10 +19,6 @@
   </p>
 </div>
 
-<!-- Video -->
-
-<!-- <video src='https://youtu.be/7Y2kOU450fU' width=180></video> -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7Y2kOU450fU?si=TLcylHMipkTkqRMU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -55,6 +51,8 @@
 <h2 id="abouttheproject"> About the Project </h2>
 
 Aegis is a cutting-edge smart contract audit and analysis tool, empowered by state-of-the-art artificial intelligence, that safeguards your smart contracts against a wide range of vulnerabilities. Traditional security approaches like manually defining patterns are time-consuming, require deep expertise, and struggle to keep up with ever-evolving threats. Aegis leverages the power of deep learning to offer a faster, more comprehensive solution.
+
+Watch demo [here](https://youtu.be/7Y2kOU450fU)
 
 <h3 id="mission"> Mission: </h3>
 
