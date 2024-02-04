@@ -18,7 +18,7 @@ bnb_config = BitsAndBytesConfig(
 )
 
 
-
+device = "cpu"
 # Load model in 4-bit
 tokenizer = AutoTokenizer.from_pretrained("AlfredPros/CodeLlama-7b-Instruct-Solidity")
-modelGen = AutoModelForCausalLM.from_pretrained("AlfredPros/CodeLlama-7b-Instruct-Solidity", quantization_config=bnb_config, device_map="balanced_low_0")
+modelGen = AutoModelForCausalLM.from_pretrained("AlfredPros/CodeLlama-7b-Instruct-Solidity", quantization_config=bnb_config, device_map="balanced_low_0").to(device)
