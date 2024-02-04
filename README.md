@@ -142,7 +142,7 @@ Once you have the prerequisites, you can set up Aegis by following these steps:
    ```
 5. **Run your first command:**
    ```
-   poetry run aegis
+   poetry run aegis --help
    ```
 
 For a more detailed setup guide, consult our [documentation](docs/setup.md).
@@ -166,13 +166,16 @@ Aegis offers a set of intuitive CLI commands for efficient interaction. Refer to
 compile : compile the solidity code
 ```
 ```
-documentation : 
+documentation : generate documentation for the smart contract
 ```
 ```
-generate : 
+generate : generate ready to deploy smart contracts
 ```
 ```
 info : get information about the application
+```
+```
+report : generate a pdf report for the smart contract, summarizing its content, highlighting detected vulnerabilities, and suggesting optimizations
 ```
 ```
 scan : scan a file or directory for vulnerabilities
