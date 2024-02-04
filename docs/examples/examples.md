@@ -32,7 +32,9 @@ Now you're ready to explore and utilize Aegis through its command line interface
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
 ## List of Commands
+
 
 We'll now explore each Aegis command in detail. From compiling Solidity code to generating documentation, scanning for vulnerabilities, and more, let's break down the technical aspects of each command to enhance your understanding of Aegis tools for smart contract development, audit and analysis.
 
@@ -154,5 +156,7 @@ poetry run aegis summary -–path contracts/ballot.sol
     <img src="assets/summary.jpeg">
   </a>
 </div>
+
+> NOTE: Please use the '--gpu' flag in any command if you wish to utilize GPU for llama inference.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
