@@ -7,7 +7,7 @@
     <img src="assets/AegisLogo.png">
   </a>
   <p>
-    Aegis is a smart contract audit and analysis tool powered by artificial intelligence, dedicated to safeguarding your Solidity code from vulnerabilities.
+    Aegis is a smart contract audit and analysis tool powered by artificial intelligence, dedicated to safeguarding your smart contracts from vulnerabilities.
   <br />
     <br />
     <a href="">View Demo</a>
@@ -41,19 +41,20 @@
     </li>
     <li><a href="#clicommands">CLI Commands</a></li>
     <li><a href="#license">License</a></li>
+    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#team">Team Members</a></li>
   </ol>
 </details>
 
 <h2 id="abouttheproject"> About the Project </h2>
 
-Aegis is a cutting-edge smart contract audit and analysis tool, empowered by state-of-the-art artificial intelligence, that safeguards your Solidity code against a wide range of vulnerabilities. Traditional security approaches like manually defining patterns are time-consuming, require deep expertise, and struggle to keep up with ever-evolving threats. Aegis leverages the power of deep learning to offer a faster, more comprehensive solution.
+Aegis is a cutting-edge smart contract audit and analysis tool, empowered by state-of-the-art artificial intelligence, that safeguards your smart contracts against a wide range of vulnerabilities. Traditional security approaches like manually defining patterns are time-consuming, require deep expertise, and struggle to keep up with ever-evolving threats. Aegis leverages the power of deep learning to offer a faster, more comprehensive solution.
 
-<h3 id="mission"> Mission </h3>
+<h3 id="mission"> Mission: </h3>
 
 Our mission is to empower developers of all skill levels with advanced security capabilities, simplifying the process of building robust and trustworthy smart contracts.
 
-<h3 id="valueproposition"> Value Proposition </h3>
+<h3 id="valueproposition"> Value Proposition: </h3>
 
 - **AI-powered Vulnerability Detection:** Our robust machine learning model, trained on extensive real-world data, accurately identifies critical vulnerabilities, exceeding the limitations of traditional rule-based approaches.
 - **Solidity Expertise:** Aegis seamlessly supports Solidity, the leading language for smart contract development, ensuring compatibility with your existing projects.
@@ -76,6 +77,12 @@ Our mission is to empower developers of all skill levels with advanced security 
 <h2 id="builtwith"> Built with </h2>
  
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)  ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white) ![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Huggingface-white?style=for-the-badge)
+
+<h3> Open Source Pre-trained Models: </h3>
+
+- [ResNet18](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet18.html)
+- [TheBloke/Llama-2-7B-Chat-GGML](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML)
+- [AlfredPros/CodeLlama-7b-Instruct-Solidity](https://huggingface.co/AlfredPros/CodeLlama-7b-Instruct-Solidity)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -107,17 +114,62 @@ For a deeper understanding of the fine-tuning process, dataset selection, and mi
 
 <h2 id="gettingstarted"> Getting Started </h2>
 
-<h3 id="installation"><a href="docs/setup.md"> Installation Instructions </a></h3>
-<h3 id="example"> <a href="docs/examples.md"> Example Usage </a></h3>
+<h3 id="installation"> Installation Instructions: </h3>
+
+To setup Aegis in your local machine, you need to have the following prerequisites installed on your system:
+1. **Python 3.8 or higher:** [Download and install Python](https://www.python.org/downloads/) if you haven't already.
+
+2. **Poetry:** We use Poetry for dependency management. Install it by following the instructions [here](https://python-poetry.org/docs/#installation).
+
+Once you have the prerequisites, you can set up Aegis by following these steps:
+
+1. **Clone the repository:**
+   ```
+   git clone https://github.com/KarthikS373/aegis.git
+   ```
+
+2. **Navigate to the project directory:**
+    ```
+    cd aegis
+    ```
+3. **Install dependencies using Poetry:**
+    ```
+    poetry install
+    ```
+4. **Activate Virtual Environment:**
+   ```
+    poetry shell
+   ```
+5. **Run your first command:**
+   ```
+   poetry run aegis
+   ```
+
+For a more detailed setup guide, consult our [documentation](docs/setup.md).
+
+<h3 id="example"> Example Usage: </h3>
+
+To see Aegis in action, check out our demo or refer to the detailed example usage guide in our documentation:
+
+- **Demo:** [Watch the Demo]()
+- **Example Usage Guide:** [Example Usage Guide](docs/examples/examples.md)
+
+Feel free to explore and experiment with the provided examples to understand how to make the most out of Aegis for your projects.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <h2 id="clicommands"> CLI Commands </h2>
 
-Aegis offers a set of intuitive CLI commands for efficient interaction. Refer to the [documentation](docs/examples.md) for usage examples.
+Aegis offers a set of intuitive CLI commands for efficient interaction. Refer to the [documentation](docs/examples/examples.md) for usage examples.
 ```
 compile : compile the solidity code
+```
+```
+documentation : 
+```
+```
+generate : 
 ```
 ```
 info : get information about the application
@@ -133,7 +185,14 @@ summary : get summary about the smart contract
 
 <h2 id="license"> License </h2>
 
-Aegis is licensed under the MIT license. For more information, please see the LICENSE file in the repository.
+Aegis is licensed under the MIT license. For more information, please see the [LICENSE](LICENSE) file in the repository.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<h2 id="contributing"> Contributing </h2>
+
+We welcome contributions! For detailed instructions on how to contribute, please refer to the [Contributing Guide](docs/contributing.md) in our documentation.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
