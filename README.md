@@ -10,7 +10,7 @@
     Aegis is a smart contract audit and analysis tool powered by artificial intelligence, dedicated to safeguarding your smart contracts from vulnerabilities.
   <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="https://youtu.be/jKpPOpVc6yM">View Demo</a>
     ·
     <a href="https://github.com/KarthikS373/aegis/issues">Report Bug</a>
     ·
@@ -151,7 +151,7 @@ For a more detailed setup guide, consult our [documentation](docs/setup.md).
 
 To see Aegis in action, check out our demo or refer to the detailed example usage guide in our documentation:
 
-- **Demo:** [Watch the Demo]()
+- **Demo:** [Watch the Demo](https://youtu.be/jKpPOpVc6yM)
 - **Example Usage Guide:** [Example Usage Guide](docs/examples/examples.md)
 
 Feel free to explore and experiment with the provided examples to understand how to make the most out of Aegis for your projects.
