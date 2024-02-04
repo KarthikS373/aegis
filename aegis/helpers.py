@@ -1,16 +1,12 @@
+import inquirer
 import json
 import os
 import sys
 import solcx
 
-from solcx import compile_standard, compile_source
+from solcx import compile_source
 from typing import Optional
-
-from args import CompileArguments, ScanArguments
-from cli import Effects
-from config import BANNER
-from model import predict, reverse_engineer_one_hot_encoding
-
+import re
 
 class Helper:
     def __init__(self):
@@ -179,3 +175,116 @@ class Helper:
             print("Error writing the file")
             print(e)
             sys.exit(1)
+
+    def generateInquirer():
+
+        categories = {
+    "governance": {
+        "DAOs": ["Voting", "Proposals", "Quadratic Voting", "Delegated Voting", "Snapshot Voting"],
+        "Treasury Management": ["Multi-sig Wallets", "Funding Proposals", "Spending Limits", "Budget Tracking"],
+        "Governance Tokens": ["Mintable", "Burnable", "Pausable", "Vesting", "Token-Curated Registries"],
+    },
+    "defi": {
+        "Lending/Borrowing": ["Collateralized Loans", "Undercollateralized Loans", "Interest Rate Models", "Flash Loans"],
+        "DEX": ["Automated Market Maker (AMM)", "Order Book", "Liquidity Pools", "Cross-Chain Swaps"],
+        "Yield Farming": ["Staking", "LP Tokens", "Reward Distribution", "Auto-Compounding"],
+        "Stablecoins": ["Collateralized", "Algorithmic", "Rebase Mechanisms", "Stability Mechanisms"],
+        "Derivatives": ["Options", "Futures", "Synthetics", "Perpetuals"],
+    },
+    "token": {
+        "ERC20": ["Burnable", "Mintable", "Pausable", "Fee on Transfer"],
+        "ERC721": ["Burnable", "Royalties", "Ownable", "Mintable", "Metadata Updatable"],
+        "ERC1155": ["Burnable", "Royalties", "Pausable", "Batch Transfer"],
+        "Governance Tokens": ["Voting Rights", "Delegation", "Timelock", "Governance with EIP-712"],
+        "Utility Tokens": ["Access Rights", "Discounts", "Membership", "Service Access"],
+    },
+    "marketplace": {
+        "Marketplace": ["Auction", "Fixed Price", "Offers", "Reserve Price"],
+        "NFT Marketplace": ["Royalties", "Batch Upload", "Metadata Standards", "Lazy Minting"],
+        "DeFi Marketplace": ["Token Swaps", "Liquidity Provision", "Fee Models", "Automated Portfolio Management"],
+    },
+    "airdrop": {
+        "Airdrop": ["Timed Release", "Merit Based", "Random", "Snapshot Based", "Activity Based"],
+        "Token Distribution": ["Linear Vesting", "Cliff Vesting", "Immediate", "Performance Based"],
+    },
+    "miscellaneous": {
+        "Privacy": ["Zero Knowledge Proofs", "Private Transactions", "Tornado Cash"],
+        "Layer 2": ["State Channels", "Plasma", "Optimistic Rollups", "ZK Rollups"],
+        "Interoperability": ["Cross-Chain Bridges", "Wrapped Tokens", "Chain Agnostics"],
+        "Oracles": ["Data Feeds", "Decentralized Oracles", "Off-Chain Computation"],
+        "Security": ["Auditing Tools", "Smart Contract Monitors", "Bug Bounties"],
+        "Storage": ["IPFS", "Filecoin", "Arweave", "Decentralized Storage Solutions"],
+        "Identity": ["DID (Decentralized Identifiers)", "Verifiable Credentials", "Self-Sovereign Identity"],
+        "Social Networks": ["Decentralized Social Media", "Token-Based Incentives", "Decentralized Content Creation"],
+        "Games and Collectibles": ["GameFi", "Play to Earn", "Virtual Worlds", "Digital Collectibles"],
+        "Insurance": ["Decentralized Insurance", "Smart Contract Cover", "Parametric Insurance"],
+        "Supply Chain": ["Track and Trace", "Proof of Origin", "Supply Chain Finance"],
+    }
+
+        }
+
+        # Step 1: Choose the category
+        category_questions = [
+            inquirer.List('category',
+                        message="Select the category of the contract",
+                        choices=list(categories.keys())),
+        ]
+        category = inquirer.prompt(category_questions)['category']
+
+        # Step 2: Choose the type of smart contract within the selected category
+        contract_types = list(categories[category].keys())
+        contract_type_questions = [
+            inquirer.List('contract_type',
+                        message="Select the type of Solidity smart contract you want to build",
+                        choices=contract_types),
+        ]
+        contract_type = inquirer.prompt(contract_type_questions)['contract_type']
+
+        # Step 3: Choose modifications or plugins for the selected contract type
+        modifications = categories[category][contract_type]
+        mod_questions = [
+            inquirer.Checkbox('mods',
+                            message=f"Select modifications/plugins to add to the {contract_type} contract",
+                            choices=modifications),
+        ]
+        mods_selected = inquirer.prompt(mod_questions)['mods']
+
+        # Step 4: Input additional details about the contract
+        detail_questions = [
+            inquirer.Text('name', message="Enter the name of the contract"),
+            inquirer.Text('token', message="Enter the token symbol (if applicable)"),
+            inquirer.Text('description', message="Enter a description of the contract"),
+        ]
+        details = inquirer.prompt(detail_questions)
+
+
+        # Print all responses
+        print("\nSummary of your selections:")
+        print(f"Contract Type: {contract_type}")
+        print(f"Modifications/Plugins: {', '.join(mods_selected) if mods_selected else 'None'}")
+        print(f"Name of Contract: {details['name']}")
+        print(f"Token Symbol: {details['token']}")
+        print(f"Description: {details['description']}")
+
+        return category,contract_type, {', '.join(mods_selected) if mods_selected else 'None'}, details['name'], details['token'], details['description']
+    import re
+
+    def extract_code_and_write_to_file(response):
+        # Define a regular expression pattern to match content within triple backticks
+        pattern = r"```(?:solidity)?([\s\S]+?)```"
+    
+        # Find all matches of the pattern in the response
+        matches = re.findall(pattern, response)
+        
+        
+        if matches:
+            # Assume there is only one code block in the response for simplicity
+            code_content = matches[0]
+            
+        else:
+            print("No code block found in the response")
+
+        rest_of_text = re.sub(pattern, "", response)
+        return code_content, rest_of_text
+            
+

@@ -1,7 +1,7 @@
 import sys
 import time
 
-from colorama import init, Fore, Back, Style
+from colorama import init
 
 
 class Effects:

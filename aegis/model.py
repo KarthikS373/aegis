@@ -9,7 +9,6 @@ from pyevmasm.evmasm import disassemble_hex, assemble_hex
 
 SAFE_IDX = 4
 
-
 def normalize_bytecode(bytecode):
     """
     Normalize bytecode by converting 'PUSH' instructions with lengths

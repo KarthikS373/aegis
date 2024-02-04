@@ -1,22 +1,19 @@
+import os
 import solcx
-import sys
 
+from cli import Effects
 from clidantic import Parser
+from config import BANNER
 from fpdf import FPDF
 import numpy as np
-from solcx import compile_standard, compile_source
-from typing import Optional
-import os
-from args import CompileArguments, ScanArguments, GenerateReportArguments
-from cli import Effects
-from config import BANNER
+
+from args import CompileArguments, ScanArguments, GenerateReportArguments, GenerateArguments
 from helpers import Helper
-from genModel import tokenizer, modelGen
-from llm import llm
+from llm import create_llm_with_gpu
 from model import predict, reverse_engineer_one_hot_encoding
 
-
 class Controller:
+
     def __init__(self):
         # Initialize the CLI parser and setup the commands
         self.cli = Parser(name="aegis")
@@ -81,6 +78,11 @@ class Controller:
                 "description": "Compile the solidity code",
                 "script": self.compile
             },
+            {
+                "command": "documentation",
+                "description": "Create a documentation for the solidity file",
+                "script": self.documentation
+            },
             # Command: generate-report
             # Description: Generate a report for the scanned vulnerabilities
             {
@@ -133,43 +135,49 @@ class Controller:
 
         self.effects.skip_line(2)
 
+    def generate(self, args: GenerateArguments):
 
-    def generate(self, args: CompileArguments):
-
+        category,contract_type, modes, name, token, description= Helper.generateInquirer()
         solidity_file_path = args.path #takes in the path where it should write the contract
-        input=args.prompt
+        solidity_file_path = args.path
+        promptIns = f"""
+            Create an optimized Solidity smart contract incorporating user-defined specifications:
 
-        promptIns = f"""### Instruction:
-                Use the Task below and the Input given to write the Response, which is a programming code that can solve the following Task:
+            Category: {category}
+            Type: {contract_type}
+            Features: {modes}
+            Contract Name: {name}
+            Symbol: {token}
+            Purpose: {description}
+            Requirements:
 
-                ### Task:
-                {input}
+            Efficiency: Apply gas optimization techniques suitable for the contract's type and features.
+            Security: Integrate security best practices to mitigate common vulnerabilities and ensure the integrity of the contract's features.
+            Documentation: Provide NatSpec documentation for all elements, including a comprehensive overview and detailed comments for public functions and variables.
+            Testing Outline: Suggest test scenarios that cover critical functionalities and potential edge cases.
+            Deliverables:
 
-                ### Solution:
+            Generate the contract code with structured sections for implementation, security considerations, documentation, and testing recommendations. Highlight any areas necessitating further human review
                 """
+        # print(promptIns)
+        llm = create_llm_with_gpu(args)
         
-        input_ids = tokenizer(promptIns, return_tensors="pt", truncation=True).input_ids.cuda()
-        # Run the model to infere an output
-        outputs = modelGen.generate(input_ids=input_ids, max_new_tokens=1024, do_sample=True, top_p=0.9, temperature=0.001, pad_token_id=1)
+        response = llm(promptIns)
+        directory_path = os.path.dirname(solidity_file_path)
 
-        genCode = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0][len(promptIns):]
-        print(genCode)
+        # Create the directory if it doesn't exist
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
 
-        is_solidity = os.path.exists(solidity_file_path) and solidity_file_path.endswith(".sol")
+        # Write the file
+        with open(solidity_file_path, "w") as file:
+            file.write(response)
+
         
-        if is_solidity:
-            return  # Solidity file already exists, no need to create a new one
-        
-        # Solidity file doesn't exist, create a new one
-        with open(solidity_file_path, "w") as solidity_file:
-            # Write initial content to the Solidity file
-            solidity_file.write(genCode)
-            # Optionally, you can add more content or leave the file empty
-            
+        print(f"Generated code has been written in {solidity_file_path}")
         return
 
     def summary(self, args: ScanArguments):
-
         is_solidity = self.helper.check_solidity_file(args.path)
         if not is_solidity:
             print("Please provide a solidity file")
@@ -189,11 +197,46 @@ class Controller:
             Contract: {}
         """.format(contract_file)
 
+        llm = create_llm_with_gpu(args)
+
         for word in llm(prompt, stream=True):
             print(word, end='')
 
         print("\n")
 
+        return
+    
+    def documentation(self, args: ScanArguments):
+        file_path = args.path
+        is_solidity = self.helper.check_solidity_file(file_path)
+        if not is_solidity:
+            print("Please provide a solidity file")
+            return
+
+        contract_file = self.helper.read_solidity_file(file_path)
+
+        promptDoc = """
+            You have a Solidity smart contract:{} that you want to document. 
+            Please generate comprehensive documentation including the following:
+            1. Natspec documented code for the given contract.
+            2. Detailed documentation for each function, explaining their purpose, parameters, and any modifiers used.
+            Provide specific and detailed answers without ambiguity.
+        """.format(contract_file)
+        llm = create_llm_with_gpu(args)
+        docs = llm(promptDoc)
+        print("Docs:",  docs)
+    
+        # Extract filename from file path
+        filename = os.path.basename(file_path)
+        # Remove file extension if present
+        filename_without_extension = os.path.splitext(filename)[0]
+
+        # Write contents of docs to a new Markdown file
+        markdown_filename = filename_without_extension + ".md"
+        with open(markdown_filename, "w") as md_file:
+            md_file.write(docs)
+        
+        print(f"Documentation has been written to {filename_without_extension}.md")
         return
 
     def compile(self, args: CompileArguments):
@@ -319,7 +362,7 @@ class Controller:
                                     Can you say why and where is {} vulnerability in this code?:
                                     {}
                                     """.format(sublist[0], contract_file)
-
+                            llm = create_llm_with_gpu(args)
                             for word in llm(prompt, stream=True):
                                 print(word, end='')
 
@@ -348,6 +391,7 @@ class Controller:
 
                 self.effects.write(f"Generating {title}...")
                 try:
+                    llm = create_llm_with_gpu(args)
                     response = llm(f"{prompt} code: {contract_file}")
                     if response:
                         # Title
@@ -371,7 +415,7 @@ class Controller:
             if args.output:
                 path = args.output.endswith(
                     '/') and args.output or f'{args.output}/'
-            pdf.output(f'{path}{report.pdf}', 'F')
+            pdf.output(f'{path}report.pdf', 'F')
 
         except Exception as e:
             print("Error generating report")

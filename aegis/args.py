@@ -8,15 +8,14 @@ class CompileArguments(BaseModel):
         names=("-p", "--path"),
         description="Path to the contract file"
     )
+    gpu: Optional[bool] = Field(
+        names=("-g", "--gpu"),
+        description="Initializes GPU for LLama inferencing"
+    )
 
     output: Optional[str] = Field(
         names=("-o", "--output"),
         description="Output directory"
-    )
-
-    prompt: Optional[str] = Field(
-        names=("-pt", "--prompt"),
-        description="Prompt for generating code"
     )
 
     optimize: Optional[bool] = Field(
@@ -33,7 +32,7 @@ class ScanArguments (CompileArguments):
 
 class GenerateReportArguments (BaseModel):
     """Generate report arguments for the report generator"""
-    path: str = Field(
+    path: Optional[str] = Field(
         names=("-p", "--path"),
         description="Path to the contract file"
     )
@@ -43,3 +42,20 @@ class GenerateReportArguments (BaseModel):
         description="Path to the PDF report",
         default="report.pdf"
     )
+    gpu: Optional[bool] = Field(
+        names=("-g", "--gpu"),
+        description="Initializes GPU for LLama inferencing"
+    )
+
+class GenerateArguments (BaseModel):
+
+    path: str = Field(
+        names=("-p", "--path"),
+        description="Path to the contract file"
+    )
+    gpu: Optional[bool] = Field(
+        names=("-g", "--gpu"),
+        description="Initializes GPU for LLama inferencing"
+    )
+
+    pass

@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Contracts 
-# contracts/
+contracts/
 
 # Distribution / packaging
 .Python
